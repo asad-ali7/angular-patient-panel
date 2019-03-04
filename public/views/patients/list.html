@@ -1,0 +1,33 @@
+<div class="container" >
+    <a class="btn btn-primary" ng-href="#!/patient/create">Add Patient</a>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Gender</th>
+                    <th>Update</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="patient in patients">
+                    <td>{{patient.name}}</td>
+                    <td>{{patient.email}}</td>
+                    <td>{{patient.age}}</td>
+                    <td>{{patient.address}}</td>
+                    <td>{{patient.city}}</td>
+                    <td>{{patient.gender}}</td>
+                    <td><a class="btn btn-warning" ng-href="#!/patient/{{patient._id}}">update</a>
+                    </td>
+                    <td><button class="btn btn-danger" ng-click="deletePatient(patient._id,$index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

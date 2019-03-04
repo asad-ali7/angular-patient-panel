@@ -1,0 +1,100 @@
+
+<form class="form-horizontal" name="patient_form" id="patient_form" ng-submit="createPatient()" novalidate>
+
+    <!--input field to take the name of patient-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" ,
+                ng-model="patient.name" ng-minlength="3" ng-pattern="/^([a-zA-Z]+\s)*[a-zA-Z]+$/"
+                title="Name should be characters and space only." required>
+            <span ng-bind-html="printError(patient_form.name)">
+            </span>
+            <!-- <span ng-show="patient_form.name.$touched && patient_form.name.$error.minlength">Minlength</span> -->
+        </div>
+    </div>
+
+    <!--input field to take the email of patient-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="email" name="email" placeholder="Enter email"
+                ng-model="patient.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+                title="Your email should be like: abc@example.com." required>
+            <!----span ng-show="patient_form.email.$touched && patient_form.email.$invalid-pattern">your email should follow that
+                    pattern:abc@example.com</span> -->
+            <span ng-bind-html="printError(patient_form.email)">
+            </span>
+        </div>
+    </div>
+
+    <!--input field to take the age of patient-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="age">Age:</label>
+        <div class="col-sm-10">
+            <input min="0" class="form-control" id="age" name="age" placeholder="Enter Age"
+                ng-model="patient.age" np-pattern="/^[0-9]*$/gm" title="Just numbers are allowed" required>
+            <span ng-bind-html="printError(patient_form.age)">
+            </span>
+        </div>
+    </div>
+
+    <!--input field to tkae the address of patient-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="address">Address:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="address" placeholder="Enter address"
+                ng-model="patient.address" required>
+        </div>
+    </div>
+
+    <!--input field to take the city of patient-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="city">City:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="city" placeholder="Enter city" ng-model="patient.city"
+                required>
+        </div>
+    </div>
+
+    <!--input field to tkae the gender of patient-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="gender">Gender:</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="gender" ng-model="patient.gender" required>
+                <option>Male</option>
+                <option>Female</option>
+            </select> </div>
+    </div>
+
+    <!--To take picture of pateint-->
+    <div class="form-group">
+        <label class="control-label col-sm-2">Picture:</label>
+        <div class="col-sm-10">
+            <input type="file" ng-model="patient.picture" />
+        </div>
+
+    </div>
+
+    <!--To take the password of patient-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="password">Pass:</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" name="password"
+                placeholder="Enter password" ng-model="patient.password" ng-minlength="8"
+                ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/"
+                title="At least one uppercase letter, one lowercase letter, one number and one special character:"
+                required>
+            <span ng-bind-html="printError(patient_form.password)">
+            </span>
+        </div>
+    </div>
+    
+    <!--Submit button to use form submission-->
+    <div class="form-group">
+        <div class="col-sm-offset-6 col-sm-6">
+            <button type="submit" class="btn btn-primary"
+                ng-disabled="patient_form.$invalid">{{(patient._id)?'Update': 'Submit'}}</button>
+        </div>
+    </div>
+</form>

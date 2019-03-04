@@ -12,16 +12,12 @@ app.use(bodyParser.json());
 
 app.get('/patients', function (req, res) {
     db.patients.find(function (err, docs) {
-        //console.log(docs);
         res.json(docs);
-
-
     })
 });
 
 
 app.post('/patients', function (req, res) {
-    console.log(req.body);
     db.patients.insert(req.body, (err, doc) => {
         res.json(doc);
 
@@ -30,8 +26,6 @@ app.post('/patients', function (req, res) {
 
 app.delete('/patients/:id/delete', function (req, res) {
     var id = req.params.id;
-    console.log(id);
-
     db.patients.remove({ _id: mongojs.ObjectId(id) }, (err, doc) => {
         res.json(doc);
     })
@@ -40,9 +34,8 @@ app.delete('/patients/:id/delete', function (req, res) {
 
 app.get('/patients/:id/get', function (req, res) {
     var id = req.params.id;
-    console.log(id);
-
     db.patients.findOne({ _id: mongojs.ObjectId(id) }, (err, doc) => {
+        console.log(doc)
         res.json(doc);
     })
 
@@ -50,8 +43,6 @@ app.get('/patients/:id/get', function (req, res) {
 
 app.put('/patients/:id/update', function (req, res) {
     var id = req.params.id;
-    console.log(id);
-
     db.patients.findAndModify({
         query: { _id: mongojs.ObjectId(id) },
         update: {
