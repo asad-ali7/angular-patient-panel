@@ -2,12 +2,14 @@
 (function () {
     'use strict';
 
-    angular.module('hospitalApp').controller('patientListController', function ($scope, $http) {
+    angular.module('hospitalApp').controller('patientListController', function ($scope, $http, patients) {
         var refresh = () => {
-            $http.get('/patients').then(function (response) {
-                $scope.patients = response.data;
-            })
+            // $http.get('/patients').then(function (response) {
+            //     $scope.patients = response.data;
+            // })
+            $scope.patients = patients;
         }
+        console.log(patients,$http);
         refresh();
 
         $scope.deletePatient = function (id, index) {

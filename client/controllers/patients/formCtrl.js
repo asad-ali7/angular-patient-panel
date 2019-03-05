@@ -2,12 +2,13 @@
 (function () {
     'use strict';
 
-    angular.module('hospitalApp').controller('patientFormCtrl', function ($scope, $http,$sce,$window,$routeParams) {
-        $scope.patient = {};
+    angular.module('hospitalApp').controller('patientFormCtrl', function ($scope, $http,$sce,$window,$routeParams,patient) {
+        console.log(patient);
+        $scope.patient = patient || {};
         if($routeParams.id){
-            $http.get('/patients/' + $routeParams.id + '/get').then(function (response) {
-                $scope.patient = angular.copy(response.data);
-            })
+            // $http.get('/patients/' + $routeParams.id + '/get').then(function (response) {
+            //     $scope.patient = angular.copy(response.data);
+            // })
         }
         $scope.createPatient = function () {
             if ($scope.patient._id) {
