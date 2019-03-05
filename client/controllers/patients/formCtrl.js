@@ -13,14 +13,14 @@
         $scope.createPatient = function () {
             if ($scope.patient._id) {
                 $http.put('/patients/' + $scope.patient._id + '/update', $scope.patient).then(function (response) {
-                    $window.location.href = '/';
+                    $window.location.href = '#!/patients';
                     // $scope.patients.push(response.data);
                     //    refresh();
                 });
             }
             else {
                 $http.post('/patients', $scope.patient).then(function (response) {
-                    $window.location.href = '/';
+                    $window.location.href = '#!/patients';
                     // console.log(response);
                     // $scope.patients.push(response.data);
                     // refresh();

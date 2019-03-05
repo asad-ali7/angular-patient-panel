@@ -1,7 +1,6 @@
 'use strict';
 var express = require('express');
 var app = express();
-
 var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + "/client"));
@@ -23,6 +22,8 @@ app.use(function (req, res, next) {
 })
 
 app.use('/patients', require('./routes/patients/middleware'), require('./routes/patients/patients'))
+app.use('/doctors', require('./routes/doctors/middleware'), require('./routes/doctors/doctors'))
+
 
 app.listen(3000)
 console.log("server is running on 3000 port");
