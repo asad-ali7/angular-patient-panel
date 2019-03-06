@@ -14,6 +14,8 @@
         $scope.deleteDoctor = function (id, index) {
             $http.delete('/doctors/' + id + '/delete').then(function (response) {
                 $scope.doctors.splice(index, 1);
+            }, function (err) {
+                console.log('<<<<<<<<', err);
             })
 
         }

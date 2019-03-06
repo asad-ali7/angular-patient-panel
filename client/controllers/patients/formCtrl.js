@@ -16,6 +16,8 @@
                     $window.location.href = '#!/patients';
                     // $scope.patients.push(response.data);
                     //    refresh();
+                },function(err){
+                    console.log('<<<<<<<<',err);
                 });
             }
             else {
@@ -24,6 +26,8 @@
                     // console.log(response);
                     // $scope.patients.push(response.data);
                     // refresh();
+                },function(err){
+                    console.log('<<<<<<<<',err);
                 });
             }
         }

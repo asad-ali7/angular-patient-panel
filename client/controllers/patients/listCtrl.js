@@ -9,12 +9,13 @@
             // })
             $scope.patients = patients;
         }
-        console.log(patients,$http);
         refresh();
 
         $scope.deletePatient = function (id, index) {
             $http.delete('/patients/' + id + '/delete').then(function (response) {
                 $scope.patients.splice(index, 1);
+            }, function (err) {
+                console.log('<<<<<<<<', err);
             })
 
         }

@@ -12,5 +12,15 @@ var doctorSchema = new Schema({
   file: String,
   password: String,
 });
+
+doctorSchema.methods.validPassword = function( password){
+  if (this.password == password) {
+    return true;
+  }
+  else {
+    return falsae;
+  }
+}
+  
 var doctor = mongoose.model('doctor', doctorSchema);
 module.exports = doctor;

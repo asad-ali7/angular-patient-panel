@@ -10,6 +10,17 @@ var patientSchema = new Schema({
   gender: String,
   file: String,
   password: String,
+
 });
+
+patientSchema.methods.validPassword = function (password) {
+  if (this.password == password) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 var patient = mongoose.model('patient', patientSchema);
 module.exports = patient;
+
