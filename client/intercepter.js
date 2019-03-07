@@ -1,4 +1,4 @@
-angular.module('hospitalApp').factory('Interceptor', function ($q,$window) {
+angular.module('hospitalApp').factory('Interceptor', function ($q,$window,$injector) {
     return {
         // optional method
         'request': function (config) {
@@ -18,10 +18,13 @@ angular.module('hospitalApp').factory('Interceptor', function ($q,$window) {
         },
         // optional method
         'responseError': function (rejection) {
+            let toastr = $injector.get('toastr');
             console.log('-----------------------',rejection.statusText);
             if (rejection.status && rejection.status == 403) {
-                console
                 $window.location.href = '#!/login';
+            }
+            if (rejection.status && rejection.status == 500) {
+                toastr.error(rejection.data, 'Error');
             }
             // do something on error
             return $q.reject(rejection);

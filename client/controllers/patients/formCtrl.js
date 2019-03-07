@@ -2,8 +2,10 @@
 (function () {
     'use strict';
 
-    angular.module('hospitalApp').controller('patientFormCtrl', function ($scope, $http,$sce,$window,$routeParams,patient) {
+    angular.module('hospitalApp').controller('patientFormCtrl', function ($scope, $http,$sce,$window,$routeParams,patient,toastr) {
         console.log(patient);
+        // toastr.error('Your credentials are gone', 'Error');
+
         $scope.patient = patient || {};
         if($routeParams.id){
             // $http.get('/patients/' + $routeParams.id + '/get').then(function (response) {

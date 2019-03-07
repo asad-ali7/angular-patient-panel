@@ -1,6 +1,8 @@
 (function () {
     'use strict';
     angular.module('hospitalApp', [
-        "ngRoute"
+        "ngRoute",
+        'ngAnimate',
+        'toastr'
     ])
 })();

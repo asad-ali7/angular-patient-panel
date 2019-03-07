@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
     }
     else {
         if (req.session && req.session.passport && req.session.passport.user) {
-            req.session.nowInMinutes = Math.floor(Date.now() / 1e3)-(6*3600);
+            req.session.nowInMinutes = Math.floor(Date.now() / 1e3)+(1*3600);
             next()
         }
         else {

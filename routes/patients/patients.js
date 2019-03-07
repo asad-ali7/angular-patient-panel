@@ -1,6 +1,8 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
+let errHand =require('../errorHandler/errorHandler')
+
 
 let Patient = require('../../models/patient')
 
@@ -12,9 +14,13 @@ router.get('/', function (req, res, next) { next() }, function (req, res) {
 
 router.post('/', function (req, res, next) { next() }, function (req, res) {
     let patient = new Patient(req.body);
-    console.log('--------------------',Patient)
     patient.save(function (err, patient) {
-        res.json(patient);
+        if (err) {
+            res.status(500).send( errHand.errHandler(err))
+        }
+        else {
+            res.json(patient);
+        }
     })
 })
 
@@ -37,10 +43,10 @@ router.get('/:id/get', function (req, res, next) { next() }, function (req, res)
 
 router.put('/:id/update', function (req, res, next) { next() }, function (req, res) {
     var id = req.params.id;
-    
+
     Patient.findByIdAndUpdate(
-        id,req.body,{new: true},(err, patient) => {
-        // Handle any possible database errors
+        id, req.body, { new: true }, (err, patient) => {
+            // Handle any possible database errors
             if (err) return res.status(500).send(err);
             return res.send(patient);
         }

@@ -1,10 +1,14 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
+
 var Schema = mongoose.Schema;
 
 var doctorSchema = new Schema({
   name: String,
-  email: String,
-  age: Number,
+  email:{ 
+    type : String , unique : true, required : true },
+  age: { 
+    type: Number, min: 0, max: 100 },
   address: String,
   city: String,
   specilization:String,
@@ -12,6 +16,7 @@ var doctorSchema = new Schema({
   file: String,
   password: String,
 });
+doctorSchema.plugin(uniqueValidator);
 
 doctorSchema.methods.validPassword = function( password){
   if (this.password == password) {
